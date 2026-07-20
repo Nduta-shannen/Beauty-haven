@@ -1,0 +1,71 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>🛒 My Shopping Cart</h1>
+
+{% if cart_items %}
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th>Action</th>
+    </tr>
+
+    {% for item in cart_items %}
+
+    <tr>
+
+        <td>{{ item.product.name }}</td>
+
+        <td>Ksh {{ item.product.price }}</td>
+
+        <td>
+
+            <a href="{% url 'decrease_quantity' item.id %}">➖</a>
+
+            {{ item.quantity }}
+
+            <a href="{% url 'increase_quantity' item.id %}">➕</a>
+            
+         </a>
+ 
+        </td>
+
+        <td>
+
+            Ksh {% widthratio item.product.price 1 item.quantity %}
+
+        </td>
+
+        <td>
+
+            <a href="{% url 'remove_from_cart' item.id %}">
+
+                ❌ Remove
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<h2>Total: Ksh {{ total }}</h2>
+ <a href="{% url 'checkout' %}" class="checkout-btn">
+    Proceed to Checkout
+
+{% else %}
+
+<h2>Your cart is empty.</h2>
+
+{% endif %}
+
+{% endblock %}

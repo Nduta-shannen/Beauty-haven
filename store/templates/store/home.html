@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="hero">
+    <div class="hero-text">
+    <h1>Beauty Haven</h1>
+        <h3>Where Beauty Meets Confidence ✨</h3>
+        <p>
+            Discover premium skincare, makeup, perfumes and beauty essentials
+            carefully selected just for you.
+        </p>
+
+        <a href="{% url 'shop' %}" class="shop-btn">
+            🛍 Shop Now
+        </a>
+
+    </div>
+
+    <div class="hero-image">
+
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=900" alt="Beauty Products">
+
+    </div>
+
+</div>
+
+<h2>Shop by Category</h2>
+<div class="categories">
+
+{% for category in categories %}
+
+<a class="category-btn" href="{% url 'category' category.id %}">
+    {{ category.name }}
+</a>
+
+{% endfor %}
+
+</div>
+
+
+
+{% endblock %}

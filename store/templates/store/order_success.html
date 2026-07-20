@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="checkout-container">
+
+    <h1>🎉 Order Placed Successfully!</h1>
+
+    <p>Thank you for shopping with <strong>Beauty Haven</strong>. 💖</p>
+
+    <p>Click the button below to send your order on WhatsApp.</p>
+
+    <a href="{{ whatsapp_url }}" class="checkout-btn" target="_blank">
+        💬 Send Order on WhatsApp
+    </a>
+    
+
+</div>
+
+{% endblock %}

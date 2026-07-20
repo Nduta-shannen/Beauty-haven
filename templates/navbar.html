@@ -1,0 +1,50 @@
+<header class="navbar">
+
+    <!-- Top Row -->
+    <div class="top-nav">
+
+        <div class="logo">
+            <a href="{% url 'home' %}">🌸 Beauty Haven</a>
+        </div>
+
+        <form method="GET" action="{% url 'shop' %}" class="search-form">
+            <input type="text" name="q" placeholder="Search products...">
+            <button type="submit">🔍</button>
+        </form>
+
+        <div class="account">
+            {% if user.is_authenticated %}
+
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button class="logout-btn" type="submit">Logout</button>
+                </form>
+
+            {% else %}
+
+                <a class="login-btn" href="{% url 'login' %}">Login</a>
+
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="bottom-nav">
+
+        <a href="{% url 'home' %}">🏠 Home</a>
+
+        <a href="{% url 'shop' %}">🛍 Shop</a>
+
+        <a href="{% url 'about' %}">ℹ️ About</a>
+
+        <a href="{% url 'contact' %}">📞 Contact</a>
+
+        <a href="{% url 'cart' %}">🛒 Cart</a>
+
+        <a href="{% url 'orders' %}">📦 My Orders</a>
+ 
+        <a href="{% url 'wishlist' %}">❤️ Wishlist</a>
+    </div>
+
+</header>
