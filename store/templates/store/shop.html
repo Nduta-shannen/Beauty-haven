@@ -2,12 +2,47 @@
 
 {% block content %}
 
-<h1>Shop Page</h1>
+<div class="container">
+    <h1 class="page-title">🛍️ Shop Our Products</h1>
 
-{% for product in products %}
-    <h2>{{ product.name }}</h2>
-    <p>{{ product.price }}</p>
-    <p>{{ product.description }}</p>
-{% endfor %}
+    <div class="products-grid">
+
+        {% for product in products %}
+
+        <div class="product-card">
+
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+            {% endif %}
+
+            <h2>{{ product.name }}</h2>
+
+            <p class="price">Ksh {{ product.price }}</p>
+
+            <p class="description">
+                {{ product.description|truncatewords:12 }}
+            </p>
+
+            <div class="product-buttons">
+                <a href="{% url 'product' product.id %}" class="cart-btn">
+                    View Product
+                </a>
+
+                <a href="{% url 'add_to_wishlist' product.id %}" class="wishlist-btn">
+                    ❤️ Wishlist
+                </a>
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <h2>No products available.</h2>
+
+        {% endfor %}
+
+    </div>
+
+</div>
 
 {% endblock %}

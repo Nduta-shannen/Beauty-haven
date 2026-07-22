@@ -206,13 +206,32 @@ def orders(request):
 def order_success(request, order_id):
     order = Order.objects.get(id=order_id, user=request.user)
 
+    message = f"""
+🌸 Hello Beauty Haven!
+
+I have placed an order.
+
+🆔 Order ID: BH{order.id}
+
+👤 Name: {order.name}
+📞 Phone: {order.phone}
+📍 Delivery Address: {order.location}
+
+💰 Total: Ksh {order.total}
+
+Thank you!
+"""
+
+    whatsapp_url = (
+        "https://wa.me/254745036877?text=" + quote(message)
+    )
+
     context = {
         "order": order,
+        "whatsapp_url": whatsapp_url,
     }
 
     return render(request, "store/order_success.html", context)
-
-from django.contrib.auth.decorators import login_required
 
 @login_required
 def add_to_wishlist(request, pk):
