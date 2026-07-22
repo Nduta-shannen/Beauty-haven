@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <div class="profile-card">
+
+        {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" class="profile-image">
+        {% else %}
+            <div class="profile-placeholder">
+                👤
+            </div>
+        {% endif %}
+
+        <h1>Welcome back, {{ request.user.username|title }}! 🌸</h1>
+
+        <hr>
+
+        <div class="profile-info">
+
+            <h3>📞 Phone Number</h3>
+            <p>{{ profile.phone|default:"Not added yet" }}</p>
+
+            <h3>📍 Delivery Address</h3>
+            <p>{{ profile.address|default:"Not added yet" }}</p>
+
+        </div>
+
+        <div class="profile-stats">
+
+            <div class="stat-box">
+                <h2>{{ request.user.order_set.count }}</h2>
+                <p>📦 Orders</p>
+            </div>
+
+            <div class="stat-box">
+                <h2>{{ request.user.wishlist_set.count }}</h2>
+                <p>❤️ Wishlist</p>
+            </div>
+
+        </div>
+
+        <a href="{% url 'edit_profile' %}" class="cart-btn">
+            ✏️ Edit Profile
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

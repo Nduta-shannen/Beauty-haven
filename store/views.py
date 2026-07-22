@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Products, Category, Cart, Order, OrderItem, Review, Wishlist
+from .models import Products, Category, Cart, Order, OrderItem, Review, Wishlist, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from urllib.parse import quote
-
+from .forms import ProfileForm
 
 def home(request):
     print(request.user)
@@ -233,3 +233,37 @@ def wishlist(request):
     }
 
     return render(request, "store/wishlist.html", context)
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def profile(request):
+    profile = request.user.profile
+
+    return render(request, "store/profile.html", {
+        "profile": profile
+    })
+
+   
+
+@login_required
+def edit_profile(request):
+    profile = request.user.profile
+
+    if request.method == "POST":
+        form = ProfileForm(
+            request.POST,
+            request.FILES,
+            instance=profile
+        )
+
+        if form.is_valid():
+            form.save()
+            return redirect("profile")
+
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, "store/edit_profile.html", {
+        "form": form
+    })

@@ -21,4 +21,6 @@ urlpatterns =[
     path("order-success/<int:order_id>/", views.order_success, name="order_success"),
     path("wishlist/add/<int:pk>/", views.add_to_wishlist, name="add_to_wishlist"),
     path("wishlist/", views.wishlist, name="wishlist"),
+    path("profile/", views.profile, name="profile"),
+    path("profile/edit/", views.edit_profile, name="edit_profile"),
 ]
