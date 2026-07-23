@@ -637,3 +637,88 @@ select{
     padding:25px;
     box-shadow:0 8px 20px rgba(0,0,0,.1);
 }
+
+/* ===========================
+   MOBILE RESPONSIVE DESIGN
+=========================== */
+
+@media (max-width: 768px){
+
+    .top-nav{
+        flex-direction: column;
+        gap:15px;
+        padding:15px;
+    }
+
+    .bottom-nav{
+        flex-wrap:wrap;
+        gap:12px;
+        padding:12px;
+    }
+
+    .bottom-nav a{
+        font-size:14px;
+    }
+
+    .search-form{
+        width:100%;
+    }
+
+    .search-form input{
+        width:100%;
+    }
+
+    .hero{
+        flex-direction:column;
+        padding:25px;
+        margin:15px;
+        text-align:center;
+    }
+
+    .hero-text{
+        width:100%;
+    }
+
+    .hero-text h1{
+        font-size:42px;
+    }
+
+    .hero-image img{
+        width:100%;
+        max-width:350px;
+        margin-top:20px;
+    }
+
+    .products-grid{
+        grid-template-columns:1fr;
+    }
+
+    .product-card{
+        width:100%;
+    }
+
+    .product-image{
+        height:250px;
+    }
+
+    .categories{
+        justify-content:center;
+    }
+
+    .product-details-card{
+        flex-direction:column;
+        padding:20px;
+    }
+
+    .product-details-container{
+        width:100%;
+    }
+
+    .profile-card{
+        width:95%;
+    }
+
+    .footer{
+        padding:25px;
+    }
+}

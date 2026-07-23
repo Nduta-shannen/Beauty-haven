@@ -202,22 +202,37 @@ def orders(request):
         'orders': orders
     })
 
+from urllib.parse import quote
+from django.contrib.auth.decorators import login_required
+
 @login_required
 def order_success(request, order_id):
     order = Order.objects.get(id=order_id, user=request.user)
 
+    # Build the products list
+    products = ""
+    for item in order.orderitem_set.all():
+        products += (
+            f"• {item.product.name} × {item.quantity} "
+            f"- Ksh {item.price * item.quantity}\n"
+        )
+
+    # Build the WhatsApp message
     message = f"""
 🌸 Hello Beauty Haven!
 
-I have placed an order.
+I have placed a new order.
 
 🆔 Order ID: BH{order.id}
+
+🛍️ Products:
+{products}
+
+💰 Total: Ksh {order.total}
 
 👤 Name: {order.name}
 📞 Phone: {order.phone}
 📍 Delivery Address: {order.location}
-
-💰 Total: Ksh {order.total}
 
 Thank you!
 """
